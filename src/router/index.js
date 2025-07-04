@@ -7,11 +7,15 @@ const router = createRouter({
       path: "/",
       name: "home",
       meta: {
-        title: "HelloWorld",
+        // #region 已完成
+        // title: "HelloWorld",
+        // #endregion
+        title: "第一个webgl程序",
       },
       // #region 已完成
-      component: () => import("@/views/HelloWorld.vue"),
+      // component: () => import("@/views/HelloWorld.vue"),
       // #endregion
+      component: () => import("@/views/chapter02/HelloCanvas.vue"),
     },
   ],
 });
