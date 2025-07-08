@@ -11,15 +11,17 @@ const router = createRouter({
         // title: "HelloWorld",
         // title: "第一个webgl程序",
         // title: "绘制一个点(版本1)",
+        // title: "绘制一个点(版2)",
         // #endregion
-        title: "绘制一个点(版2)",
+        title: "通过鼠标点击绘制点",
       },
       // #region 已完成
       // component: () => import("@/views/HelloWorld.vue"),
       // component: () => import("@/views/chapter02/HelloCanvas.vue"),
       // component: () => import("@/views/chapter02/HelloPoint1.vue"),
+      // component: () => import("@/views/chapter02/HelloPoint2.vue"),
       // #endregion
-      component: () => import("@/views/chapter02/HelloPoint2.vue"),
+      component: () => import("@/views/chapter02/ClickedPoints.vue"),
     },
   ],
 });
