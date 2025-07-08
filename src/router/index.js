@@ -9,13 +9,15 @@ const router = createRouter({
       meta: {
         // #region 已完成
         // title: "HelloWorld",
+        // title: "第一个webgl程序",
         // #endregion
-        title: "第一个webgl程序",
+        title: "绘制一个点(版本1)",
       },
       // #region 已完成
       // component: () => import("@/views/HelloWorld.vue"),
+      // component: () => import("@/views/chapter02/HelloCanvas.vue"),
       // #endregion
-      component: () => import("@/views/chapter02/HelloCanvas.vue"),
+      component: () => import("@/views/chapter02/HelloPoint1.vue"),
     },
   ],
 });
