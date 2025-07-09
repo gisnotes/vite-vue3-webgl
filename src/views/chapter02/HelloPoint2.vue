@@ -20,7 +20,9 @@ onMounted(() => {
     gl_FragColor = vec4(0.0, 1.0 ,0.0 ,1.0);//设置颜色
   }`;
 
-  const gl = getWebGLContext(webglDivRef.value);
+  const canvas = webglDivRef.value;
+  canvas.width = canvas.height = 400;
+  const gl = getWebGLContext(canvas);
   if (!gl) {
     console.log("无法获取 WebGL 的渲染上下文");
     return;

@@ -7,6 +7,7 @@ const webglDivRef = ref(null);
 
 onMounted(() => {
   const canvas = webglDivRef.value;
+  canvas.width = canvas.height = 400;
   // console.log("🚀 ~ :13 ~ canvas:", canvas);
   const gl = getWebGLContext(canvas);
   if (!gl) {
