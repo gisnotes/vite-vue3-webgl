@@ -1,5 +1,5 @@
 <template>
-  <canvas id="webgl" class="webgl" ref="webglDivRef"></canvas>
+  <canvas class="webgl" ref="webglDivRef"></canvas>
 </template>
 
 <script setup>
