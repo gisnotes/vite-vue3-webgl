@@ -15,7 +15,6 @@ function init() {
     attribute vec4 a_Position;
     void main () {
       gl_Position = a_Position;//设置坐标
-      gl_PointSize = 10.0;//设置尺寸
     }
   `;
 
@@ -51,7 +50,14 @@ function init() {
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-  gl.drawArrays(gl.POINTS, 0, n);
+  //  绘制一个三角形
+  // gl.drawArrays(gl.TRIANGLES, 0, n);
+  // 绘制一条线段
+  // gl.drawArrays(gl.LINES, 0, n);
+  // 绘制两条相连线段组成的折线
+  // gl.drawArrays(gl.LINE_STRIP, 0, n);
+  // 绘制闭合的线段组成的空心的三角形
+  gl.drawArrays(gl.LINE_LOOP, 0, n);
 }
 
 function initVertexBuffers(gl) {
@@ -81,6 +87,7 @@ function initVertexBuffers(gl) {
   gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
   // 启用对 a_Position 变量的赋值
   gl.enableVertexAttribArray(a_Position);
+
   return n;
 }
 </script>
