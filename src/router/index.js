@@ -16,8 +16,9 @@ const router = createRouter({
         // title: "通过鼠标点击绘制不同颜色的点",
 
         // title: "(一次性)绘制多个点",
+        // title: "绘制一个三角形",
         // #endregion
-        title: "绘制一个三角形",
+        title: "绘制多边形",
       },
       // #region 已完成
       // component: () => import("@/views/HelloWorld.vue"),
@@ -28,8 +29,9 @@ const router = createRouter({
       // component: () => import("@/views/chapter02/ColoredPoints.vue"),
 
       // component: () => import("@/views/chapter03/MultiPoint.vue"),
+      // component: () => import("@/views/chapter03/HelloTriangle.vue"),
       // #endregion
-      component: () => import("@/views/chapter03/HelloTriangle.vue"),
+      component: () => import("@/views/chapter03/HelloQuad.vue"),
     },
   ],
 });
