@@ -1,29 +1,21 @@
-# vite-vue3-webgl
+##  项目初始化
 
-This template should help get you started developing with Vue 3 in Vite.
+1. [项目初始化](https://github.com/gisnotes/vite-vue3-webgl/commit/02f91301332b8fdc5791c5015798134968841fb7)
+2. [集成WebGL编程指南一书提供的utils，并完成一个示例](https://github.com/gisnotes/vite-vue3-webgl/commit/1390a16c6a7c4d9c881aea643a617b821527418d)
 
-## Recommended IDE Setup
+## 第2章 WebGL 入门
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+1. [第一个webgl程序](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter02/HelloCanvas.vue)
+2. [绘制一个点(版本1)](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter02/HelloPoint1.vue)
+3. [绘制一个点(版本2)](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter02/HelloPoint2.vue)
+4. [通过鼠标点击绘制点](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter02/ClickedPoints.vue)
+5. [通过鼠标点击绘制不同颜色的点](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter02/ColoredPoints.vue)
 
-## Customize configuration
+## 第3章 绘制和变换三角形
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+1. [(一次性)绘制多个点](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter03/MultiPoint.vue)
+2. [绘制一个三角形](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter03/HelloTriangle.vue)
+3. [绘制多边形](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter03/HelloQuad.vue)
+4. [平移三角形](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter03/TranslateTriangle.vue)
+5. [旋转三角形](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter03/RotatedTriangle.vue)
+6. [利用矩阵平移或旋转三角形](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter03/TranslateRotatedTriangleMatrix.vue)

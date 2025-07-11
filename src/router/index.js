@@ -11,7 +11,7 @@ const router = createRouter({
         // title: "HelloWorld",
         // title: "第一个webgl程序",
         // title: "绘制一个点(版本1)",
-        // title: "绘制一个点(版2)",
+        // title: "绘制一个点(版本2)",
         // title: "通过鼠标点击绘制点",
         // title: "通过鼠标点击绘制不同颜色的点",
 
@@ -19,8 +19,9 @@ const router = createRouter({
         // title: "绘制一个三角形",
         // title: "绘制多边形",
         // title: "平移三角形",
+        // title: "旋转三角形",
         // #endregion
-        title: "旋转三角形",
+        title: "利用矩阵平移或旋转三角形",
       },
       // #region 已完成
       // component: () => import("@/views/HelloWorld.vue"),
@@ -34,8 +35,9 @@ const router = createRouter({
       // component: () => import("@/views/chapter03/HelloTriangle.vue"),
       // component: () => import("@/views/chapter03/HelloQuad.vue"),
       // component: () => import("@/views/chapter03/TranslateTriangle.vue"),
+      // component: () => import("@/views/chapter03/RotatedTriangle.vue"),
       // #endregion
-      component: () => import("@/views/chapter03/RotatedTriangle.vue"),
+      component: () => import("@/views/chapter03/TranslateRotatedTriangleMatrix.vue"),
     },
   ],
 });
