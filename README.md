@@ -19,3 +19,4 @@
 4. [平移三角形](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter03/TranslateTriangle.vue)
 5. [旋转三角形](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter03/RotatedTriangle.vue)
 6. [利用矩阵平移或旋转三角形](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter03/TranslateRotatedTriangleMatrix.vue)
+7. [利用矩阵将三角形垂直方向(即y方向)上拉伸1.5倍](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter03/ScaledTriangleMatrix.vue)
