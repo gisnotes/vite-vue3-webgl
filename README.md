@@ -1,3 +1,5 @@
+> 注：英文原版书籍代码下载地址：https://sites.google.com/site/webglbook/home 。
+
 ##  项目初始化
 
 1. [项目初始化](https://github.com/gisnotes/vite-vue3-webgl/commit/02f91301332b8fdc5791c5015798134968841fb7)
