@@ -22,8 +22,10 @@ const router = createRouter({
         // title: "旋转三角形",
         // title: "利用矩阵平移或旋转三角形",
         // title: "利用矩阵将三角形垂直方向(即y方向)上拉伸1.5倍",
+
+        // title: "利用封装的matrix函数来旋转三角形",
         // #endregion
-        title: "利用封装的matrix函数来旋转三角形",
+        title: "先平移后旋转(或先旋转后平移)三角形示例",
       },
       // #region 已完成
       // component: () => import("@/views/HelloWorld.vue"),
@@ -40,8 +42,10 @@ const router = createRouter({
       // component: () => import("@/views/chapter03/RotatedTriangle.vue"),
       // component: () => import("@/views/chapter03/TranslateRotatedTriangleMatrix.vue"),
       // component: () => import("@/views/chapter03/ScaledTriangleMatrix.vue"),
+
+      // component: () => import("@/views/chapter04/RotatedTriangle_Matrix4.vue"),
       // #endregion
-      component: () => import("@/views/chapter04/RotatedTriangle_Matrix4.vue"),
+      component: () => import("@/views/chapter04/RotatedTranslatedTriangle.vue"),
     },
   ],
 });

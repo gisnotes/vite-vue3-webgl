@@ -12,9 +12,9 @@ onMounted(() => {
 function init() {
   const VSHADER_SOURCE = `
     attribute vec4 a_Position;
-    uniform mat4 u_xformMatrix;
+    uniform mat4 u_ModelMatrix;
     void main () {
-      gl_Position = u_xformMatrix * a_Position;
+      gl_Position = u_ModelMatrix * a_Position;
     }
   `;
 
@@ -24,8 +24,6 @@ function init() {
       gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
     }
   `;
-
-  const ANGLE = 90.0; //要旋转的角度
 
   const cvs = webglDivRef.value;
   cvs.width = cvs.height = 400;
@@ -49,20 +47,36 @@ function init() {
     return;
   }
 
-  const xformMatrix = new Matrix4();
-  /**
-   * 旋转轴：角度后的三个参数0,0,1表示旋转轴z轴，这里表示绕z轴旋转，
-   * 并且旋转的角度为角度，而非弧度
-   * 上述的0,0,1表示绕着从原点(0,0,0)指向的(0,0,1)的轴进行旋转
-   */
-  xformMatrix.setRotate(ANGLE, 0, 0, 1);
+  const modelMatrix = new Matrix4();
+  const ANGLE = 60.0;
+  const Tx = 0.5;
 
-  const u_xformMatrix = gl.getUniformLocation(gl.program, "u_xformMatrix");
-  if (!u_xformMatrix) {
-    console.log("无法获取 u_xformMatrix 的存储位置");
+  /**
+   *  思路：先平移后旋转
+   * 旋转矩阵 * (平移矩阵 * 原始坐标) <=> (旋转矩阵 * 平移矩阵) * 原始坐标，
+   * 虽然我们想先平移后旋转，但通过上述公式可以看出
+   */
+  //利用带有set前缀的方法计算旋转矩阵
+  modelMatrix.setRotate(ANGLE, 0, 0, 1); //设置模型矩阵为旋转矩阵
+  /**
+   * 然后利用不带set前缀的方法计算先计算出平移矩阵，
+   * 然后用存储在modelMatrix中的矩阵乘以这个平移矩阵，将结果再写回modelMatrix中
+   *
+   * 这里也说明了带有set前缀和不带的方法的区别。
+   */
+  modelMatrix.translate(Tx, 0, 0); //将模型矩阵乘以平移矩阵
+
+  // 先旋转后平移， 则实现如下，同上类似,但最终结果却完全不同
+  // modelMatrix.setTranslate(Tx, 0, 0);
+  // modelMatrix.rotate(ANGLE, 0, 0, 1);
+
+  const u_ModelMatrix = gl.getUniformLocation(gl.program, "u_ModelMatrix");
+  if (!u_ModelMatrix) {
+    console.log("无法获取 u_ModelMatrix 的存储位置");
     return;
   }
-  gl.uniformMatrix4fv(u_xformMatrix, false, xformMatrix.elements);
+  // 将模型矩阵传输给顶点着色器
+  gl.uniformMatrix4fv(u_ModelMatrix, false, modelMatrix.elements);
 
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
   gl.clear(gl.COLOR_BUFFER_BIT);
@@ -72,7 +86,7 @@ function init() {
 }
 
 function initVertexBuffers(gl) {
-  const vertices = new Float32Array([0.0, 0.5, -0.5, -0.5, 0.5, -0.5]);
+  const vertices = new Float32Array([0, 0.3, -0.3, -0.3, 0.3, -0.3]);
   const n = 3;
   const vertexBuffer = gl.createBuffer();
   if (!vertexBuffer) {
