@@ -28,3 +28,4 @@
 1. [集成矩阵变换库cuon-matrix.js](https://github.com/gisnotes/vite-vue3-webgl/commit/da027fbeb019a5e17c593b32ca649b5b71ef8952)
 2. [利用封装的matrix函数来旋转三角形](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter04/RotatedTriangle_Matrix4.vue)
 3. [先平移后旋转(先旋转后平移)三角形](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter04/RotatedTranslatedTriangle.vue)
+4. [(旋转三角形)动画](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter04/RotatingTriangle.vue)
