@@ -1,4 +1,4 @@
-> 注：英文原版书籍代码下载地址：https://sites.google.com/site/webglbook/home 。
+> 注：英文原版书籍代码下载地址：https://sites.google.com/site/webglbook/home ，我已下载放在本项目的public目录下。
 
 ##  项目初始化
 
@@ -29,3 +29,4 @@
 2. [利用封装的matrix函数来旋转三角形](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter04/RotatedTriangle_Matrix4.vue)
 3. [先平移后旋转(先旋转后平移)三角形](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter04/RotatedTranslatedTriangle.vue)
 4. [(旋转三角形)动画](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter04/RotatingTriangle.vue)
+4. [加速/减速三角形动画](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter04/RotatingTriangle_withButtons.vue)
