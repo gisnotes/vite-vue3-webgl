@@ -31,7 +31,8 @@
 4. [(旋转三角形)动画](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter04/RotatingTriangle.vue)
 4. [加速/减速三角形动画](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter04/RotatingTriangle_withButtons.vue)
 
-## 第4章 颜色与纹理
+## 第5章 颜色与纹理
 
 1. [绘制多个不同尺寸的点(一)](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/MultiAttributeSize.vue)
 2. [绘制多个不同尺寸的点(二)](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/MultiAttributeSize_Interleaved.vue)
+3. [绘制多个不同颜色的点](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/MultiAttributeColor.vue)

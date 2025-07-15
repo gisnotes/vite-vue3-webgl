@@ -29,8 +29,9 @@ const router = createRouter({
         // title: "加速/减速三角形动画",
 
         // title: "绘制多个不同尺寸的点(一)",
+        // title: "绘制多个不同尺寸的点(二)",
         // #endregion
-        title: "绘制多个不同尺寸的点(二)",
+        title: "绘制多个不同颜色的点",
       },
       // #region 已完成
       // component: () => import("@/views/HelloWorld.vue"),
@@ -53,8 +54,9 @@ const router = createRouter({
       // component: () => import("@/views/chapter04/RotatingTriangle.vue"),
 
       // component: () => import("@/views/chapter05/MultiAttributeSize.vue"),
+      // component: () => import("@/views/chapter05/MultiAttributeSize_Interleaved.vue"),
       // #endregion
-      component: () => import("@/views/chapter05/MultiAttributeSize_Interleaved.vue"),
+      component: () => import("@/views/chapter05/MultiAttributeColor.vue"),
     },
   ],
 });
