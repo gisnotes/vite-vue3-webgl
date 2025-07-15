@@ -33,4 +33,5 @@
 
 ## 第4章 颜色与纹理
 
-1. [绘制多个不同尺寸的点](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/MultiAttributeSize.vue)
+1. [绘制多个不同尺寸的点(一)](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/MultiAttributeSize.vue)
+2. [绘制多个不同尺寸的点(二)](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/MultiAttributeSize_Interleaved.vue)

@@ -27,8 +27,10 @@ const router = createRouter({
         // title: "先平移后旋转(或先旋转后平移)三角形示例",
         // title: "三角形(平移/旋转)动画",
         // title: "加速/减速三角形动画",
+
+        // title: "绘制多个不同尺寸的点(一)",
         // #endregion
-        title: "绘制多个不同尺寸的点",
+        title: "绘制多个不同尺寸的点(二)",
       },
       // #region 已完成
       // component: () => import("@/views/HelloWorld.vue"),
@@ -49,8 +51,10 @@ const router = createRouter({
       // component: () => import("@/views/chapter04/RotatedTriangle_Matrix4.vue"),
       // component: () => import("@/views/chapter04/RotatedTranslatedTriangle.vue"),
       // component: () => import("@/views/chapter04/RotatingTriangle.vue"),
+
+      // component: () => import("@/views/chapter05/MultiAttributeSize.vue"),
       // #endregion
-      component: () => import("@/views/chapter05/MultiAttributeSize.vue"),
+      component: () => import("@/views/chapter05/MultiAttributeSize_Interleaved.vue"),
     },
   ],
 });
