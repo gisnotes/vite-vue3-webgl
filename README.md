@@ -36,3 +36,4 @@
 1. [绘制多个不同尺寸的点(一)](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/MultiAttributeSize.vue)
 2. [绘制多个不同尺寸的点(二)](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/MultiAttributeSize_Interleaved.vue)
 3. [绘制多个不同颜色的点](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/MultiAttributeColor.vue)
+4. [绘制彩色三角形](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/ColoredTriangle.vue)
