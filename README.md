@@ -40,3 +40,4 @@
 5. [绘制彩色三角形(二)](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/HelloTriangle_FragCoord.vue)
 6. [在矩形表面贴上图像](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/TexturedQuad.vue)
 7. [在矩形表面重复贴图](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/TexturedQuad_Repeat.vue)
+8. [在矩形上重复贴图，并设置水平和垂直方向上重复贴图的方式](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/TexturedQuad_Clamp_Mirror.vue)
