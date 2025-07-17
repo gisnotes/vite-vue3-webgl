@@ -37,8 +37,9 @@ const router = createRouter({
         // title: "在矩形表面重复贴图",
         // title: "在矩形上重复贴图，并设置水平和垂直方向上重复贴图的方式",
         // title: "使用多幅纹理",
+        // title: "研究视点、观察目标点和上方向(一)",
         // #endregion
-        title: "研究视点、观察目标点和上方向(一)",
+        title: "研究视点、观察目标点和上方向(二)",
       },
       // #region 已完成
       // component: () => import("@/views/HelloWorld.vue"),
@@ -69,8 +70,10 @@ const router = createRouter({
       // component: () => import("@/views/chapter05/TexturedQuad_Repeat.vue"),
       // component: () => import("@/views/chapter05/TexturedQuad_Clamp_Mirror.vue"),
       // component: () => import("@/views/chapter05/MultiTexture.vue"),
-      // #endregion
+
       component: () => import("@/views/chapter07/LookAtTriangles.vue"),
+      // #endregion
+      component: () => import("@/views/chapter07/LookAtRotatedTriangles.vue"),
     },
   ],
 });

@@ -9,15 +9,20 @@ onMounted(() => {
   init();
 });
 
+//以下代码注释行为两个矩阵实现视角矩阵和旋转矩阵分开实现的方法
 function init() {
   // 定义一个顶点着色器程序
   const VSHADER_SOURCE = `
     attribute vec4 a_Position;
     attribute vec4 a_Color;
-    uniform mat4 u_ViewMatrix;
+    // uniform mat4 u_ViewMatrix;
+    // uniform mat4 u_ModelMatrix;
+    uniform mat4 u_ModelViewMatrix;
     varying vec4 v_Color;
     void main () {
-      gl_Position = u_ViewMatrix * a_Position;
+      // gl_Position = u_ViewMatrix * u_ModelMatrix * a_Position;
+      // gl_Position = u_ModelViewMatrix * a_Position;
+      gl_Position = u_ModelViewMatrix * a_Position;
       v_Color = a_Color;
     }
   `;
@@ -55,9 +60,15 @@ function init() {
 
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
-  const u_ViewMatrix = gl.getUniformLocation(gl.program, "u_ViewMatrix");
-  if (!u_ViewMatrix) {
-    console.log("无法获取 u_ViewMatrix 存储位置");
+  // const u_ViewMatrix = gl.getUniformLocation(gl.program, "u_ViewMatrix");
+  // const u_ModelMatrix = gl.getUniformLocation(gl.program, "u_ModelMatrix");
+  // if (!u_ViewMatrix || !u_ModelMatrix) {
+  //   console.log("无法获取 u_ViewMatrix 或 u_ModelMatrix 存储位置");
+  //   return;
+  // }
+  const u_ModelViewMatrix = gl.getUniformLocation(gl.program, 'u_ModelViewMatrix');
+  if (!u_ModelViewMatrix) {
+    console.log("无法获取 u_ModelViewMatrix 存储位置");
     return;
   }
 
@@ -68,8 +79,17 @@ function init() {
     0, 0, 0,
     0, 1, 0);
 
+  // 定义旋转矩阵
+  const modelMatrix = new Matrix4();
+  modelMatrix.setRotate(-10, 0, 0, 1);//绕z轴顺时针旋转10度
+
+  const modelViewMatrix = viewMatrix.multiply(modelMatrix);
+
+
   // 设置视图矩阵
-  gl.uniformMatrix4fv(u_ViewMatrix, false, viewMatrix.elements);
+  // gl.uniformMatrix4fv(u_ViewMatrix, false, viewMatrix.elements);
+  // gl.uniformMatrix4fv(u_ModelMatrix, false, modelMatrix.elements);
+  gl.uniformMatrix4fv(u_ModelViewMatrix, false, modelViewMatrix.elements);
 
   gl.clear(gl.COLOR_BUFFER_BIT);
   gl.drawArrays(gl.TRIANGLES, 0, n);
