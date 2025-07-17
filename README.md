@@ -42,3 +42,22 @@
 7. [在矩形表面重复贴图](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/TexturedQuad_Repeat.vue)
 8. [在矩形上重复贴图，并设置水平和垂直方向上重复贴图的方式](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/TexturedQuad_Clamp_Mirror.vue)
 9. [使用多幅纹理](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/MultiTexture.vue)
+
+## 第6章 OpenGL ES着色器语言（GLSL ES）
+语法章节，代码略。
+
+## 第7章 进入三维世界
+
+`1. []()`
+
+## 第8章 光照
+
+`1. []()`
+
+## 第9章 层次模型
+
+`1. []()`
+
+## 第10章 高级技术
+
+`1. []()`
