@@ -49,7 +49,8 @@
 ## 第7章 进入三维世界
 
 1. [研究视点、观察目标点和上方向(一)](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter07/LookAtTriangles.vue)
-1. [研究视点、观察目标点和上方向(二)](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter07/LookAtRotatedTriangles.vue)
+2. [研究视点、观察目标点和上方向(二)](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter07/LookAtRotatedTriangles.vue)
+3. [利用键盘动态改变视角](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter07/LookAtTrianglesWithKeys.vue)
 
 ## 第8章 光照
 
