@@ -35,8 +35,9 @@ const router = createRouter({
         // title: "绘制彩色三角形(二)",
         // title: "在矩形表面贴上图像",
         // title: "在矩形表面重复贴图",
+        // title: "在矩形上重复贴图，并设置水平和垂直方向上重复贴图的方式",
         // #endregion
-        title: "在矩形上重复贴图，并设置水平和垂直方向上重复贴图的方式",
+        title: "使用多幅纹理",
       },
       // #region 已完成
       // component: () => import("@/views/HelloWorld.vue"),
@@ -65,8 +66,9 @@ const router = createRouter({
       // component: () => import("@/views/chapter05/HelloTriangle_FragCoord.vue"),
       // component: () => import("@/views/chapter05/TexturedQuad.vue"),
       // component: () => import("@/views/chapter05/TexturedQuad_Repeat.vue"),
+      // component: () => import("@/views/chapter05/TexturedQuad_Clamp_Mirror.vue"),
       // #endregion
-      component: () => import("@/views/chapter05/TexturedQuad_Clamp_Mirror.vue"),
+      component: () => import("@/views/chapter05/MultiTexture.vue"),
     },
   ],
 });

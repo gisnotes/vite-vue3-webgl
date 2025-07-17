@@ -41,3 +41,4 @@
 6. [在矩形表面贴上图像](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/TexturedQuad.vue)
 7. [在矩形表面重复贴图](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/TexturedQuad_Repeat.vue)
 8. [在矩形上重复贴图，并设置水平和垂直方向上重复贴图的方式](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/TexturedQuad_Clamp_Mirror.vue)
+9. [使用多幅纹理](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/MultiTexture.vue)
