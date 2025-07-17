@@ -38,4 +38,5 @@
 3. [绘制多个不同颜色的点](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/MultiAttributeColor.vue)
 4. [绘制彩色三角形(一)](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/ColoredTriangle.vue)
 5. [绘制彩色三角形(二)](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/HelloTriangle_FragCoord.vue)
-5. [在矩形表面贴上图像](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/TexturedQuad.vue)
+6. [在矩形表面贴上图像](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/TexturedQuad.vue)
+7. [在矩形表面重复贴图](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter05/TexturedQuad_Repeat.vue)
