@@ -48,16 +48,16 @@
 
 ## 第7章 进入三维世界
 
-`1. []()`
+1. [研究视点、观察目标点和上方向(一)](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter07/LookAtTriangles.vue)
 
 ## 第8章 光照
 
-`1. []()`
+1. [待学习]()
 
 ## 第9章 层次模型
 
-`1. []()`
+1. [待学习]()
 
 ## 第10章 高级技术
 
-`1. []()`
+1. [待学习]()
