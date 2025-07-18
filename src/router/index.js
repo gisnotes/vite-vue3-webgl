@@ -41,8 +41,9 @@ const router = createRouter({
         // title: "研究视点、观察目标点和上方向(一)",
         // title: "研究视点、观察目标点和上方向(二)",
         // title: "利用键盘动态改变视角",
+        // title: "正射视图",
         // #endregion
-        title: "正射视图",
+        title: "利用键盘动态改变视角(改为正射投影)",
       },
       // #region 已完成
       // component: () => import("@/views/HelloWorld.vue"),
@@ -77,8 +78,9 @@ const router = createRouter({
       // component: () => import("@/views/chapter07/LookAtTriangles.vue"),
       // component: () => import("@/views/chapter07/LookAtRotatedTriangles.vue"),
       // component: () => import("@/views/chapter07/LookAtTrianglesWithKeys.vue"),
+      // component: () => import("@/views/chapter07/OrthoView.vue"),
       // #endregion
-      component: () => import("@/views/chapter07/OrthoView.vue"),
+      component: () => import("@/views/chapter07/LookAtTrianglesWithKeys_ViewVolume.vue"),
     },
   ],
 });
