@@ -55,6 +55,7 @@
 5. [利用键盘动态改变视角(改为正射投影)](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter07/LookAtTrianglesWithKeys_ViewVolume.vue)
 6. [透视(投影)视图](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter07/PerspectiveView.vue)
 7. [透视(投影)视图-平移](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter07/PerspectiveView_mvp.vue)
+8. [正确处理对象的前后关系-开启深度测试](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter07/DepthBuffer.vue)
 
 ## 第8章 光照
 
