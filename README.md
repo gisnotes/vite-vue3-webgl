@@ -53,6 +53,7 @@
 3. [利用键盘动态改变视角](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter07/LookAtTrianglesWithKeys.vue)
 4. [正射视图](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter07/OrthoView.vue)
 5. [利用键盘动态改变视角(改为正射投影)](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter07/LookAtTrianglesWithKeys_ViewVolume.vue)
+5. [透视(投影)视图](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter07/PerspectiveView.vue)
 
 ## 第8章 光照
 
