@@ -1,9 +1,17 @@
 <template>
   <canvas class="webgl" ref="webglDivRef"></canvas>
+  <p class="near-far-values">
+    近平面：<span class="value">{{ nearValue }}</span>
+    ，远平面：<span class="value">{{ farValue }}</span>
+  </p>
 </template>
 
 <script setup>
+import { toFixed } from "@/utils/math.js";
+
 const webglDivRef = ref(null);
+const nearValue = ref(0);
+const farValue = ref(0);
 
 onMounted(() => {
   init();
@@ -15,10 +23,10 @@ function init() {
   const VSHADER_SOURCE = `
     attribute vec4 a_Position;
     attribute vec4 a_Color;
-    uniform mat4 u_ViewMatrix;
+    uniform mat4 u_ProjMatrix;
     varying vec4 v_Color;
     void main () {
-      gl_Position = u_ViewMatrix * a_Position;
+      gl_Position = u_ProjMatrix * a_Position;
       v_Color = a_Color;
     }
   `;
@@ -56,18 +64,18 @@ function init() {
 
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
-  const u_ViewMatrix = gl.getUniformLocation(gl.program, "u_ViewMatrix");
-  if (!u_ViewMatrix) {
-    console.log("无法获取 u_ViewMatrix 存储位置");
+  const u_ProjMatrix = gl.getUniformLocation(gl.program, "u_ProjMatrix");
+  if (!u_ProjMatrix) {
+    console.log("无法获取 u_ProjMatrix 存储位置");
     return;
   }
 
-  const viewMatrix = new Matrix4();
+  const projMatrix = new Matrix4();
   document.onkeydown = function (ev) {
-    keydown(ev, gl, n, u_ViewMatrix, viewMatrix);
+    keydown(ev, gl, n, u_ProjMatrix, projMatrix);
   };
 
-  draw(gl, n, u_ViewMatrix, viewMatrix);
+  draw(gl, n, u_ProjMatrix, projMatrix);
 }
 
 /**
@@ -76,15 +84,15 @@ function init() {
 function initVertexBuffers(gl) {
   const verticesColors = new Float32Array([
     // 顶点坐标和颜色(RGBA)
-    0.0,  0.5,  -0.4,  0.4,  1.0,  0.4, // 绿色三角形位于后面
-    -0.5, -0.5,  -0.4,  0.4,  1.0,  0.4,
-     0.5, -0.5,  -0.4,  1.0,  0.4,  0.4,
+     0.0,  0.6,  -0.4,  0.4,  1.0,  0.4, // 绿色三角形位于后面
+    -0.5, -0.4,  -0.4,  0.4,  1.0,  0.4,
+     0.5, -0.4,  -0.4,  1.0,  0.4,  0.4,
 
      0.5,  0.4,  -0.2,  1.0,  0.4,  0.4, // 黄色三角形位于中间
     -0.5,  0.4,  -0.2,  1.0,  1.0,  0.4,
      0.0, -0.6,  -0.2,  1.0,  1.0,  0.4,
 
-     0.0,  0.5,   0.0,  0.4,  0.4,  1.0,  // 蓝色三角形位于前面
+     0.0,  0.5,   0.0,  0.4,  0.4,  1.0, // 蓝色三角形位于前面
     -0.5, -0.5,   0.0,  0.4,  0.4,  1.0,
      0.5, -0.5,   0.0,  1.0,  0.4,  0.4,
   ]);
@@ -132,26 +140,37 @@ function initVertexBuffers(gl) {
   return n;
 }
 
-let g_eyeX = 0.2,
-  g_eyeY = 0.25,
-  g_eyeZ = 0.25; // Eye position
-function keydown(ev, gl, n, u_ViewMatrix, viewMatrix) {
-  if (ev.keyCode == 39) {
-    // 按下 → 键
-    g_eyeX += 0.01;
-  } else if (ev.keyCode == 37) {
-    // 按下 ← 键
-    g_eyeX -= 0.01;
-  } else {
-    return;
+let g_near = 0.0, g_far = 0.5;
+function keydown(ev, gl, n, u_ProjMatrix, projMatrix) {
+  switch(ev.keyCode){
+    case 39:
+      g_near += 0.01;
+      break;  // 按下→键
+    case 37:
+      g_near -= 0.01;
+      break;  // 按下←键
+    case 38:
+      g_far += 0.01;
+      break;  // 按下↑键
+    case 40:
+      g_far -= 0.01;
+      break;  // 按下↓键
+    default:
+      return;
   }
-  draw(gl, n, u_ViewMatrix, viewMatrix);
+  draw(gl, n, u_ProjMatrix, projMatrix);
 }
 
-function draw(gl, n, u_ViewMatrix, viewMatrix) {
-  viewMatrix.setLookAt(g_eyeX, g_eyeY, g_eyeZ, 0, 0, 0, 0, 1, 0);
-  gl.uniformMatrix4fv(u_ViewMatrix, false, viewMatrix.elements);
+function draw(gl, n, u_ProjMatrix, projMatrix) {
+  /**
+   * 6个参数依次为：
+   * left, right, bottom, top, near, far
+   */
+  projMatrix.setOrtho(-1.0, 1.0, -1.0, 1.0, g_near, g_far);
+  gl.uniformMatrix4fv(u_ProjMatrix, false, projMatrix.elements);
   gl.clear(gl.COLOR_BUFFER_BIT);
+  nearValue.value = toFixed(g_near, 2);
+  farValue.value = toFixed(g_far, 2);
   gl.drawArrays(gl.TRIANGLES, 0, n);
 }
 </script>
@@ -160,5 +179,13 @@ function draw(gl, n, u_ViewMatrix, viewMatrix) {
 .webgl {
   width: 400px;
   height: 400px;
+}
+
+.near-far-values{
+  margin-top: 10px;
+
+  .value {
+    color: #409eff;
+  }
 }
 </style>
