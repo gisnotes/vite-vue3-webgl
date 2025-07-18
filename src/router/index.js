@@ -44,7 +44,7 @@ const router = createRouter({
         // title: "正射视图",
         // title: "利用键盘动态改变视角(改为正射投影)",
         // #endregion
-        title: "透视(投影)视图",
+        title: "透视(投影)视图-平移",
       },
       // #region 已完成
       // component: () => import("@/views/HelloWorld.vue"),
@@ -81,8 +81,9 @@ const router = createRouter({
       // component: () => import("@/views/chapter07/LookAtTrianglesWithKeys.vue"),
       // component: () => import("@/views/chapter07/OrthoView.vue"),
       // component: () => import("@/views/chapter07/LookAtTrianglesWithKeys_ViewVolume.vue"),
+      // component: () => import("@/views/chapter07/PerspectiveView.vue"),
       // #endregion
-      component: () => import("@/views/chapter07/PerspectiveView.vue"),
+      component: () => import("@/views/chapter07/PerspectiveView_mvp.vue"),
     },
   ],
 });
