@@ -44,8 +44,9 @@ const router = createRouter({
         // title: "正射视图",
         // title: "利用键盘动态改变视角(改为正射投影)",
         // title: "透视(投影)视图-平移",
+        // title: "正确处理对象的前后关系-开启深度测试",
         // #endregion
-        title: "正确处理对象的前后关系-开启深度测试",
+        title: "解决深度冲突",
       },
       // #region 已完成
       // component: () => import("@/views/HelloWorld.vue"),
@@ -84,8 +85,9 @@ const router = createRouter({
       // component: () => import("@/views/chapter07/LookAtTrianglesWithKeys_ViewVolume.vue"),
       // component: () => import("@/views/chapter07/PerspectiveView.vue"),
       // component: () => import("@/views/chapter07/PerspectiveView_mvp.vue"),
+      // component: () => import("@/views/chapter07/DepthBuffer.vue"),
       // #endregion
-      component: () => import("@/views/chapter07/DepthBuffer.vue"),
+      component: () => import("@/views/chapter07/ZFighting.vue"),
     },
   ],
 });
