@@ -62,7 +62,7 @@
 
 ## 第8章 光照
 
-1. [待学习]()
+1. [光照下的立方体](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter08/LightedCube.vue)
 
 ## 第9章 层次模型
 
