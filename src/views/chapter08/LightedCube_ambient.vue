@@ -18,21 +18,27 @@ function init() {
     attribute vec4 a_Normal; // 顶点法向量
 
     uniform mat4 u_MvpMatrix;
-    uniform vec3 u_LightColor;// 灯光颜色
-    uniform vec3 u_LightDirection; // 灯光方向(归一化)
+
+    uniform vec3 u_DiffuseLight;// 漫反射光颜色
+    uniform vec3 u_LightDirection; // 漫射光方向（在世界坐标中，已归一化）
+    uniform vec3 u_AmbientLight; // 环境光颜色
 
     varying vec4 v_Color;
     void main () {
       gl_Position = u_MvpMatrix * a_Position;
 
-      //使法线的长度为1.0,实现具体查看 cuon-matrix.js文件中定义的Vector3类中的normalize方法
+      //使法线的长度为1.0，实现具体查看 cuon-matrix.js文件中定义的Vector3类中的normalize方法
       vec3 normal = normalize(a_Normal.xyz);
       // 光线方向和表面方向（法线）的点积
       float nDotL = max(dot(u_LightDirection, normal), 0.0);
       // 计算漫反射产生的颜色
       // 漫反射光颜色 = 入射光颜色 × 表面基底色 × (光线方向 × 法线方向)
-      vec3 diffuse = u_LightColor * a_Color.rgb * nDotL;
-      v_Color = vec4(diffuse, a_Color.a);
+      vec3 diffuse = u_DiffuseLight * a_Color.rgb * nDotL;
+      // 计算由于环境反射而产生的颜色
+      vec3 ambient = u_AmbientLight * a_Color.rgb;
+      //添加由漫反射和环境反射产生的表面颜色
+      // 表面反射光颜色 = 漫反射光颜色 + 环境反射光颜色
+      v_Color = vec4(diffuse + ambient, a_Color.a);
     }
   `;
 
@@ -72,20 +78,24 @@ function init() {
   gl.enable(gl.DEPTH_TEST);
 
   const u_MvpMatrix = gl.getUniformLocation(gl.program, 'u_MvpMatrix');
-  const u_LightColor = gl.getUniformLocation(gl.program, 'u_LightColor');
+
+  const u_DiffuseLight = gl.getUniformLocation(gl.program, 'u_DiffuseLight');
   const u_LightDirection = gl.getUniformLocation(gl.program, 'u_LightDirection');
-  if (!u_MvpMatrix || !u_LightColor || !u_LightDirection) {
+  const u_AmbientLight = gl.getUniformLocation(gl.program, 'u_AmbientLight');
+  if (!u_MvpMatrix || !u_DiffuseLight || !u_LightDirection || !u_AmbientLight) {
     console.log("无法获取矩阵的存储位置");
     return;
   }
 
   // 设置灯光颜色（白色）
-  gl.uniform3f(u_LightColor, 1.0, 1.0, 1.0);
+  gl.uniform3f(u_DiffuseLight, 1.0, 1.0, 1.0);
   //设置光源方向（基于世界坐标系）
   const lightDirection = new Vector3([0.5, 3.0, 4.0]);
   lightDirection.normalize();// 归一化
   gl.uniform3fv(u_LightDirection, lightDirection.elements);
-  console.log("🚀 ~ :88 ~ init ~ lightDirection.elements:", lightDirection.elements)
+  // console.log("🚀 ~ :88 ~ init ~ lightDirection.elements:", lightDirection.elements)
+  // 设置环境光
+  gl.uniform3f(u_AmbientLight, 0.2, 0.2, 0.2);
 
   const mvpMatrix = new Matrix4();
   mvpMatrix.setPerspective(30, 1, 1, 100);
