@@ -63,7 +63,8 @@
 ## 第8章 光照
 
 1. [光照下的立方体](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter08/LightedCube.vue)
-1. [环境光下的漫反射](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter08/LightedCube_ambient.vue)
+2. [环境光下的漫反射](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter08/LightedCube_ambient.vue)
+3. [运动物体(平移+旋转)的光照效果](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter08/LightedCube_ambient.vue)
 
 ## 第9章 层次模型
 
