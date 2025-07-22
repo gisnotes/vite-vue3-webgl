@@ -19,21 +19,28 @@ function init() {
 
     uniform mat4 u_MvpMatrix;
 
-    uniform vec3 u_DiffuseLight;// 漫反射光颜色
-    uniform vec3 u_LightDirection; // 漫反射光方向（在世界坐标中，已归一化）
-    uniform vec3 u_AmbientLight; // 环境光颜色
+    uniform mat4 u_ModelMatrix;//模型矩阵
+    uniform mat4 u_NormalMatrix;//法线变换矩阵
+    uniform vec3 u_LightColor;// 灯光颜色
+    uniform vec3 u_LightPosition;// 光源位置（在世界坐标中）
+    uniform vec3 u_AmbientLight;// 环境光颜色
 
     varying vec4 v_Color;
     void main () {
       gl_Position = u_MvpMatrix * a_Position;
 
-      //使法线的长度为1.0，实现具体查看 cuon-matrix.js文件中定义的Vector3类中的normalize方法
-      vec3 normal = normalize(a_Normal.xyz);
+      //根据模型矩阵重新计算法向量，并将其长度设为 1
+      vec3 normal = normalize(vec3(u_NormalMatrix * a_Normal));
+      // 计算顶点的世界坐标
+      vec4 vertexPosition = u_ModelMatrix * a_Position;
+      // 计算光线方向，并使其长度为 1.0
+      vec3 lightDirection = normalize(u_LightPosition - vec3(vertexPosition));
+
       // 光线方向和表面方向（法线）的点积
-      float nDotL = max(dot(u_LightDirection, normal), 0.0);
+      float nDotL = max(dot(normal, lightDirection), 0.0);
       // 计算漫反射产生的颜色
       // 漫反射光颜色 = 入射光颜色 × 表面基底色 × (光线方向 × 法线方向)
-      vec3 diffuse = u_DiffuseLight * a_Color.rgb * nDotL;
+      vec3 diffuse = u_LightColor * a_Color.rgb * nDotL;
       // 计算由于环境反射而产生的颜色
       vec3 ambient = u_AmbientLight * a_Color.rgb;
       //添加由漫反射和环境反射产生的表面颜色
@@ -78,35 +85,54 @@ function init() {
   gl.enable(gl.DEPTH_TEST);
 
   const u_MvpMatrix = gl.getUniformLocation(gl.program, 'u_MvpMatrix');
+  const u_ModelMatrix = gl.getUniformLocation(gl.program, 'u_ModelMatrix');
 
-  const u_DiffuseLight = gl.getUniformLocation(gl.program, 'u_DiffuseLight');
-  const u_LightDirection = gl.getUniformLocation(gl.program, 'u_LightDirection');
+  const u_NormalMatrix = gl.getUniformLocation(gl.program, 'u_NormalMatrix');
+  const u_LightColor = gl.getUniformLocation(gl.program, 'u_LightColor');
+  const u_LightPosition = gl.getUniformLocation(gl.program, 'u_LightPosition');
   const u_AmbientLight = gl.getUniformLocation(gl.program, 'u_AmbientLight');
-  if (!u_MvpMatrix || !u_DiffuseLight || !u_LightDirection || !u_AmbientLight) {
+  if (!u_MvpMatrix || !u_ModelMatrix || !u_NormalMatrix || !u_LightColor || !u_LightPosition　 || !u_AmbientLight) {
     console.log("无法获取矩阵的存储位置");
     return;
   }
 
+  const vpMatrix = new Matrix4();
+  vpMatrix.setPerspective(30, 1, 1, 100);
+  vpMatrix.lookAt(6, 6, 14, 0, 0, 0, 0, 1, 0);
+
   // 设置灯光颜色（白色）
-  gl.uniform3f(u_DiffuseLight, 1.0, 1.0, 1.0);
-  //设置光源方向（基于世界坐标系）
-  const lightDirection = new Vector3([0.5, 3.0, 4.0]);
-  lightDirection.normalize();// 归一化
-  gl.uniform3fv(u_LightDirection, lightDirection.elements);
-  // console.log("🚀 ~ :88 ~ init ~ lightDirection.elements:", lightDirection.elements)
-  // 设置环境光
+  gl.uniform3f(u_LightColor, 1.0, 1.0, 1.0);
+  // 设置光源方向（基于世界坐标系）
+  gl.uniform3f(u_LightPosition, 2.3, 4.0, 3.5);
+  // 设置环境光颜色
   gl.uniform3f(u_AmbientLight, 0.2, 0.2, 0.2);
 
+  let currentAngle = 0.0;
+  const modelMatrix = new Matrix4();
   const mvpMatrix = new Matrix4();
-  mvpMatrix.setPerspective(30, 1, 1, 100);
-  mvpMatrix.lookAt(3, 3, 7, 0, 0, 0, 0, 1, 0);
+  const normalMatrix = new Matrix4();
+  const tick = function() {
+    currentAngle = animate(currentAngle);
+    modelMatrix.setRotate(currentAngle, 0, 1, 0);//绕y轴旋转
+    gl.uniformMatrix4fv(u_ModelMatrix, false, modelMatrix.elements);
 
-  gl.uniformMatrix4fv(u_MvpMatrix, false, mvpMatrix.elements);
+    mvpMatrix.set(vpMatrix).multiply(modelMatrix);
+    gl.uniformMatrix4fv(u_MvpMatrix, false, mvpMatrix.elements);
 
-  // 清除颜色和深度缓冲区
-  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-  // 绘制立方体
-  gl.drawElements(gl.TRIANGLES, n, gl.UNSIGNED_BYTE, 0);
+    // 将基于模型矩阵进行法线变换的矩阵传递给 u_NormalMatrix
+    normalMatrix.setInverseOf(modelMatrix);
+    normalMatrix.transpose();
+    gl.uniformMatrix4fv(u_NormalMatrix, false, normalMatrix.elements);
+
+    // 清除颜色和深度缓冲区
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    // 绘制立方体
+    gl.drawElements(gl.TRIANGLES, n, gl.UNSIGNED_BYTE, 0);
+
+    requestAnimationFrame(tick, cvs);
+  }
+
+  tick();
 }
 
 function initVertexBuffers(gl) {
@@ -121,12 +147,12 @@ function initVertexBuffers(gl) {
 
   // 顶点坐标
   const vertices = new Float32Array([
-     1.0, 1.0, 1.0,  -1.0, 1.0, 1.0,  -1.0,-1.0, 1.0,   1.0,-1.0, 1.0,  // v0-v1-v2-v3 前
-     1.0, 1.0, 1.0,   1.0,-1.0, 1.0,   1.0,-1.0,-1.0,   1.0, 1.0,-1.0,  // v0-v3-v4-v5 右
-     1.0, 1.0, 1.0,   1.0, 1.0,-1.0,  -1.0, 1.0,-1.0,  -1.0, 1.0, 1.0,  // v0-v5-v6-v1 上
-    -1.0, 1.0, 1.0,  -1.0, 1.0,-1.0,  -1.0,-1.0,-1.0,  -1.0,-1.0, 1.0,  // v1-v6-v7-v2 左
-    -1.0,-1.0,-1.0,   1.0,-1.0,-1.0,   1.0,-1.0, 1.0,  -1.0,-1.0, 1.0,  // v7-v4-v3-v2 下
-     1.0,-1.0,-1.0,  -1.0,-1.0,-1.0,  -1.0, 1.0,-1.0,   1.0, 1.0,-1.0   // v4-v7-v6-v5 后
+     2.0, 2.0, 2.0,  -2.0, 2.0, 2.0,  -2.0,-2.0, 2.0,   2.0,-2.0, 2.0,  // v0-v1-v2-v3 前
+     2.0, 2.0, 2.0,   2.0,-2.0, 2.0,   2.0,-2.0,-2.0,   2.0, 2.0,-2.0,  // v0-v3-v4-v5 右
+     2.0, 2.0, 2.0,   2.0, 2.0,-2.0,  -2.0, 2.0,-2.0,  -2.0, 2.0, 2.0,  // v0-v5-v6-v1 上
+    -2.0, 2.0, 2.0,  -2.0, 2.0,-2.0,  -2.0,-2.0,-2.0,  -2.0,-2.0, 2.0,  // v1-v6-v7-v2 左
+    -2.0,-2.0,-2.0,   2.0,-2.0,-2.0,   2.0,-2.0, 2.0,  -2.0,-2.0, 2.0,  // v7-v4-v3-v2 下
+     2.0,-2.0,-2.0,  -2.0,-2.0,-2.0,  -2.0, 2.0,-2.0,   2.0, 2.0,-2.0   // v4-v7-v6-v5 后
   ]);
 
   // 每个面的颜色
@@ -139,7 +165,8 @@ function initVertexBuffers(gl) {
     1, 0, 0,   1, 0, 0,   1, 0, 0,  1, 0, 0　    // v4-v7-v6-v5 后
   ]);
 
-  const normals = new Float32Array([    // 法线
+  // 法线
+  const normals = new Float32Array([
     0.0, 0.0, 1.0,   0.0, 0.0, 1.0,   0.0, 0.0, 1.0,   0.0, 0.0, 1.0,  // v0-v1-v2-v3 前
     1.0, 0.0, 0.0,   1.0, 0.0, 0.0,   1.0, 0.0, 0.0,   1.0, 0.0, 0.0,  // v0-v3-v4-v5 右
     0.0, 1.0, 0.0,   0.0, 1.0, 0.0,   0.0, 1.0, 0.0,   0.0, 1.0, 0.0,  // v0-v5-v6-v1 上
@@ -194,6 +221,20 @@ function initArrayBuffer(gl, attribute, data, num, type) {
   gl.enableVertexAttribArray(a_attribute);
   gl.bindBuffer(gl.ARRAY_BUFFER, null);
   return true;
+}
+
+// 旋转角度（度/秒）
+const ANGLE_STEP = 30.0;
+// 上次调用此函数的时间
+let g_last = Date.now();
+function animate(angle) {
+  // 计算经过(已用)的时间
+  var now = Date.now();
+  var elapsed = now - g_last;
+  g_last = now;
+  // 更新当前旋转角度 (根据经过的时间调整)
+  var newAngle = angle + (ANGLE_STEP * elapsed) / 1000.0;
+  return newAngle %= 360;
 }
 </script>
 
