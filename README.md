@@ -67,6 +67,7 @@
 3. [运动物体(平移+旋转)的光照效果](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter08/LightedTranslatedRotatedCube.vue)
 4. [点光源光](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter08/PointLightedCube.vue)
 5. [点光源光-动画版](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter08/PointLightedCube_animation.vue)
+6. [点光源光-逐片元渲染](https://github.com/gisnotes/vite-vue3-webgl/blob/main/src/views/chapter08/PointLightedSphere_perFragment.vue)
 
 ## 第9章 层次模型
 

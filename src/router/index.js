@@ -60,8 +60,9 @@ const router = createRouter({
         // title: "环境光下的漫反射",
         // title: "运动物体(平移+旋转)的光照效果",
         // title: "点光源光",
+        // title: "点光源光(动画版)",
         // #endregion
-        title: "点光源光(动画版)",
+        title: "点光源光-逐片元渲染",
       },
       // #region 已完成
       // 第2章
@@ -115,8 +116,9 @@ const router = createRouter({
       // component: () => import("@/views/chapter08/LightedCube_ambient.vue"),
       // component: () => import("@/views/chapter08/LightedTranslatedRotatedCube.vue"),
       // component: () => import("@/views/chapter08/PointLightedCube.vue"),
+      // component: () => import("@/views/chapter08/PointLightedCube_animation.vue"),
       // #endregion
-      component: () => import("@/views/chapter08/PointLightedCube_animation.vue"),
+      component: () => import("@/views/chapter08/PointLightedSphere_perFragment.vue"),
     },
   ],
 });
